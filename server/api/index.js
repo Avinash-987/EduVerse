@@ -21,7 +21,6 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
-// --- API Routes ---
 app.use('/api/auth', require('../routes/auth'));
 app.use('/api/course', require('../routes/courses'));
 app.use('/api/lecture', require('../routes/live'));
@@ -32,5 +31,6 @@ app.use('/api/ai', require('../routes/ai'));
 app.use('/api/assignments', require('../routes/assignments'));
 app.use('/api/chat', require('../routes/chat'));
 app.use('/api/enrollments', require('../routes/enrollments'));
+
 
 module.exports = app;
