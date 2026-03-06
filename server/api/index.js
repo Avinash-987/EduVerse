@@ -35,11 +35,17 @@ app.get('/api/health', async (req, res) => {
 });
 
 // --- API Routes ---
-app.use('/api/auth', require('../routes/authRoutes'));
-app.use('/api/course', require('../routes/courseRoutes'));
-app.use('/api/lecture', require('../routes/lectureRoutes'));
-app.use('/api/user', require('../routes/userRoutes'));
-app.use('/api/razorpay', require('../routes/paymentRoutes'));
+app.use('/api/auth', require('../routes/auth'));
+app.use('/api/course', require('../routes/courses'));
+app.use('/api/lecture', require('../routes/live'));
+app.use('/api/user', require('../routes/users'));
+app.use('/api/razorpay', require('../routes/payments'));
+app.use('/api/admin', require('../routes/admin'));
+app.use('/api/ai', require('../routes/ai'));
+app.use('/api/assignments', require('../routes/assignments'));
+app.use('/api/chat', require('../routes/chat'));
+app.use('/api/enrollments', require('../routes/enrollments'));
+
 
 // --- Socket.io Setup ---
 const server = http.createServer(app);
