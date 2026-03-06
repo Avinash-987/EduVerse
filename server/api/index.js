@@ -219,8 +219,7 @@ app.use((err, req, res, next) => {
 
 // Start server — use `server.listen` so Socket.IO works
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production') {
-    server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT} | Socket.IO enabled | Locale: India (IST)`));
-}
+server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT} | Socket.IO enabled | Locale: India (IST)`));
+
 
 module.exports = app;
