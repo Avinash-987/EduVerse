@@ -15,10 +15,17 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response?.status === 401) {
+        // Do not intercept 401s for login/register endpoints so the components can show the error
+        const isAuthRequest = error.config?.url?.includes('/auth/login') || error.config?.url?.includes('/auth/register');
+
+        if (error.response?.status === 401 && !isAuthRequest) {
             localStorage.removeItem('eduverse-token');
             localStorage.removeItem('eduverse-user');
-            window.location.href = '/login';
+
+            // Only redirect if not already on login page to avoid infinite reloads
+            if (window.location.pathname !== '/login') {
+                window.location.href = '/login';
+            }
         }
         return Promise.reject(error);
     }
