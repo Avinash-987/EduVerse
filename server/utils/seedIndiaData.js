@@ -16,7 +16,11 @@ dotenv.config({ path: path.join(__dirname, '..', '.env') });
 const User = require('../models/User');
 const Course = require('../models/Course');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/eduverse';
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+    console.error('❌ MONGODB_URI environment variable is missing.');
+    process.exit(1);
+}
 
 const INSTRUCTORS = [
     { name: 'Prof. Rajesh Sharma', email: 'rajesh@eduverse.in', password: 'instructor123', role: 'faculty', bio: 'IIT Delhi professor with 15+ years in Computer Science.', location: 'New Delhi', country: 'India' },
