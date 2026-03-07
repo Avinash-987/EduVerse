@@ -8,6 +8,17 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: '*', credentials: true }));
 
+// Ensure DB connection for all requests in Vercel Serverless environment
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('Database connection failed in middleware:', error);
+    res.status(500).json({ status: 'error', message: 'Database connection failed.' });
+  }
+});
+
 app.get('/api/health', async (req, res) => {
   try {
     await connectDB();
